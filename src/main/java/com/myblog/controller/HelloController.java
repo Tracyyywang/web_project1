@@ -1,9 +1,12 @@
 package com.myblog.controller;
 
 import com.myblog.model.MeResponse;
+import com.myblog.model.MessageRequest;
 import com.myblog.model.PersonalProfile;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class HelloController {
@@ -33,5 +36,25 @@ public class HelloController {
         profile.interests = "Java、Web 开发、系统设计";
         profile.vision = "完成一个真正属于自己的全栈 Web 项目。";
         return profile;
+    }
+
+    private final List<MessageRequest> messages = new ArrayList<>();
+
+    @PostMapping("/messages")
+    public MessageRequest create(@RequestBody MessageRequest request){
+        //@RequestBody是把HTTP中的JSON请求转换成Java对象
+        //存储与返回（store and return)
+        messages.add(request);
+        return request;
+    }
+
+    @GetMapping("/messages") //查询全部信息
+    public List<MessageRequest> all(){
+        return messages;
+    }
+
+    @GetMapping("/messages/{id}") //查询编号为id的信息
+    public MessageRequest one(@PathVariable int id){
+        return messages.get(id);
     }
 }

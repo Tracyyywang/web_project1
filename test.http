@@ -1,0 +1,27 @@
+### 1.查看个人资料
+GET http://localhost:8080/profile
+
+### 2.发送第一条信息
+POST http://localhost:8080/messages
+Content-Type: application/json
+
+{
+  "content": "Hello,MyBlog"
+}
+
+### 3.发送第二条信息
+POST http://localhost:8080/messages
+Content-Type: application/json
+
+{
+  "content": "I am learning Spring Boot"
+}
+
+### 4.查询全部信息
+GET http://localhost:8080/messages
+
+### 5.查询第0条信息
+GET http://localhost:8080/messages/0
+
+### 6.查询第1条信息
+GET http://localhost:8080/messages/1
