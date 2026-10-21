@@ -1,7 +1,7 @@
 package com.myblog.repository;
 
 import com.myblog.model.Message;
-import org.springframework.stereotype.Repository;
+//import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Optional;
  * with a MySQL-backed one, without touching Service or Controller.
  */
 //六、实际存储
-@Repository
+//@Repository
 public class InMemoryRepository implements MessageRepository {
 
     // final locks the REFERENCE, not the CONTENT:
