@@ -1,15 +1,19 @@
 package com.myblog.model;
 
 import java.time.LocalDateTime;
-
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * The real message living inside MyBlog.
  * A full Message has an identity (id) and a birth time (createdAt),
  * which the visitor never submits — the system grants them.
  */
 //三、实际消息对象
+@TableName("message")
 public class Message {
 
+    @TableId(type = IdType.AUTO)
     private Long id;
     private String content;
     private LocalDateTime createdAt;
