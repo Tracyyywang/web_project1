@@ -21,5 +21,9 @@ public interface MessageRepository {
 
     /** Find one message by id; empty box if not found. */
     Optional<Message> findById(Long id);
+
+    //按 keyword 搜索消息，查第 page 页，每页 size 条，返回一个装着 Message 的分页对象。
+    com.baomidou.mybatisplus.extension.plugins.pagination.Page<Message> search(
+            String keyword, long page, long size);
 }
 

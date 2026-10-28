@@ -1,5 +1,6 @@
 package com.myblog.repository;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.myblog.model.Message;
 //import org.springframework.stereotype.Repository;
 
@@ -46,5 +47,12 @@ public class InMemoryRepository implements MessageRepository {
         return messages.stream()
                 .filter(m -> m.getId().equals(id))
                 .findFirst();
+    }
+
+    //接口里有的方法，实现类必须全部实现，所以需要在这里补个同样签名的方法。
+    @Override
+    public Page<Message> search(String keyword, long page, long size){
+        throw new UnsupportedOperationException("Week07 uses MySQL");
+        //只要有人调用 InMemoryRepository.search(...)，就会立刻抛异常,表示内存版不支持搜索，Week07 起请用 MySQL 实现。
     }
 }
