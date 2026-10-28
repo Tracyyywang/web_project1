@@ -26,22 +26,32 @@ public class MessageController {
     }
 
     //查询信息
+//    分页前查询信息
+//    @GetMapping("/messages")
+//    public List<Message> list(@RequestParam(required = false) String keyword){
+//
+//        List<Message> all = messageService.list();
+//        if (keyword == null){
+//            return all;
+//        }
+//
+//        List<Message> result = new ArrayList<>();
+//        for (int i = 0;i < all.size();i++){
+//            Message m = all.get(i);
+//            if(m.getContent().contains(keyword)){
+//                result.add(m);
+//            }
+//        }
+//        return result;
+//    }
+
+//    新增分页方法查询信息
     @GetMapping("/messages")
-    public List<Message> list(@RequestParam(required = false) String keyword){
-
-        List<Message> all = messageService.list();
-        if (keyword == null){
-            return all;
-        }
-
-        List<Message> result = new ArrayList<>();
-        for (int i = 0;i < all.size();i++){
-            Message m = all.get(i);
-            if(m.getContent().contains(keyword)){
-                result.add(m);
-            }
-        }
-        return result;
+    public com.myblog.dto.PageResult<Message> list(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "1") long page,
+            @RequestParam(defaultValue = "5") long size) {
+        return com.myblog.dto.PageResult.of(messageService.search(keyword, page, size));
     }
     @GetMapping("/messages/{id}")
     public Optional<Message> findById(@PathVariable Long id) {

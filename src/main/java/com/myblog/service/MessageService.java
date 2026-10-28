@@ -55,4 +55,10 @@ public class MessageService {
     public Optional<Message> findById(Long id) {
         return messageRepository.findById(id);
     }
+
+    //返回分页后结果到前端
+    public com.baomidou.mybatisplus.extension.plugins.pagination.Page<Message> search(
+            String keyword, long page, long size) {
+        return messageRepository.search(keyword, page, size);
+    }
 }
